@@ -1,9 +1,10 @@
 const Router = require('express')
 const router = new Router()
+const busController = require('../controllers/busController')
 
 
-router.post('/',)
-router.get('/',)
+router.post('/',busController.create)
+router.get('/',busController.getAll)
 // доработать метод delete по такому же принципу 26:53
 
 

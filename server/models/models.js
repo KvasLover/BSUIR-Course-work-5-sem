@@ -13,21 +13,23 @@ const Review = sequelize.define('review', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},    
     user_id: {type: DataTypes.INTEGER},
     message: {type: DataTypes.STRING},
-    date: {type: DataTypes.STRING}
 })
 
 const Basket = sequelize.define('basket', {
-    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true}
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    user_id: {type: DataTypes.INTEGER}
 })
 
 const BasketTicket = sequelize.define('basket_ticket', {
-    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true}   
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    basket_id: {type: DataTypes.INTEGER},
+    ticket_id: {type: DataTypes.INTEGER}
 })
 
 const Ticket = sequelize.define('ticket', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},    
     flight_id: {type: DataTypes.INTEGER, allowNull: false},
-    user_id: {type: DataTypes.INTEGER, allowNull: false},    
+    //user_id: {type: DataTypes.INTEGER, allowNull: false},    
     seat_number:  {type: DataTypes.STRING, allowNull: false},
     ticket_status: {type: DataTypes.INTEGER, allowNull: false},
     img: {type: DataTypes.STRING, allowNull: false}
@@ -55,17 +57,17 @@ const Bus = sequelize.define('bus', {
     seats: {type: DataTypes.INTEGER}
 })
 
-User.hasOne(Basket)
-Basket.belongsTo(User)
+User.hasOne(Basket, {foreignKey: "user_id"})
+Basket.belongsTo(User, {foreignKey: "user_id"})
 
-User.hasMany(Review)
-Review.belongsTo(User)
+User.hasMany(Review, {foreignKey: "user_id"})
+Review.belongsTo(User, {foreignKey: "user_id"})
 
-Basket.hasMany(BasketTicket)
-BasketTicket.belongsTo(Basket)
+Basket.hasMany(BasketTicket, {foreignKey: "basket_id"})
+BasketTicket.belongsTo(Basket, {foreignKey: "basket_id"})
 
-BasketTicket.hasOne(Ticket)
-Ticket.belongsTo(BasketTicket)
+Ticket.hasOne(BasketTicket, {foreignKey: "ticket_id"})
+BasketTicket.belongsTo(Ticket, {foreignKey: "ticket_id"})
 
 Flight.hasMany(Ticket, {foreignKey: "flight_id"})
 Ticket.belongsTo(Flight, {foreignKey: "flight_id"})

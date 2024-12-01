@@ -3,11 +3,9 @@ const ApiError = require('../error/ApiError')
 
 class FlightController {
     async create(req, res) {
-        /*const {route_id,bus_id,service_id,time_in_ride,start_time,finish_time,date,free_seats,price} = req.body
-
-               
+        /*const {route_id,bus_id,service_id,time_in_ride,start_time,finish_time,date,free_seats,price} = req.body           
         const flight = await Flight.create({route_id, bus_id, service_id, time_in_ride, start_time, finish_time, date, free_seats, price})
-        */
+        */       
         /*try {
             const { free_seats } = req.body;
             const flight = await Flight.create({ free_seats });
@@ -31,7 +29,8 @@ class FlightController {
     }
 
     async getAll(req, res) {
-        
+        const flights = await Flight.findAll()
+        return res.json(flights)
     }
 }
 

@@ -32,6 +32,18 @@ class FlightController {
         const flights = await Flight.findAll()
         return res.json(flights)
     }
+
+    async deleteAll(req, res) {
+        try {
+            await Flight.destroy({
+                where: {}, // Указывает, что мы хотим удалить все записи
+            });
+            return res.json({ message: 'Все записи успешно удалены.' });
+        } catch (error) {
+            console.error('Ошибка при удалении записей:', error);
+            return res.status(500).json({ message: 'Ошибка при удалении записей.' });
+        }
+    }
 }
 
 module.exports = new FlightController()

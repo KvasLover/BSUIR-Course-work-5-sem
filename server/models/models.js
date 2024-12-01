@@ -57,6 +57,13 @@ const Bus = sequelize.define('bus', {
     seats: {type: DataTypes.INTEGER}
 })
 
+const Route = sequelize.define('route', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},    
+    start_location: {type: DataTypes.STRING},
+    finish_location: {type: DataTypes.STRING},
+    number: {type: DataTypes.STRING}
+})
+
 User.hasOne(Basket, {foreignKey: "user_id"})
 Basket.belongsTo(User, {foreignKey: "user_id"})
 
@@ -70,10 +77,13 @@ Ticket.hasOne(BasketTicket, {foreignKey: "ticket_id"})
 BasketTicket.belongsTo(Ticket, {foreignKey: "ticket_id"})
 
 Flight.hasMany(Ticket, {foreignKey: "flight_id"})
-Ticket.belongsTo(Flight, {foreignKey: "flight_id"})
+Ticket.belongsTo(Flight, {foreignKey: "flight_id", as: "flight_info"})
 
 Bus.hasMany(Flight, { foreignKey: 'bus_id' })
 Flight.belongsTo(Bus, { foreignKey: 'bus_id' })
+
+Route.hasMany(Flight, { foreignKey: 'route_id' })
+Flight.belongsTo(Route, { foreignKey: 'route_id' })
 
 module.exports = {
     User, 
@@ -82,7 +92,8 @@ module.exports = {
     BasketTicket, 
     Ticket, 
     Flight, 
-    Bus
+    Bus,
+    Route
 }
 
 

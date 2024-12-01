@@ -1,4 +1,4 @@
-const {Ticket} = require('../models/models')
+const {Ticket, Flight, Route} = require('../models/models')
 const ApiError = require('../error/ApiError')
 const uuid = require('uuid')
 const path = require('path')
@@ -7,14 +7,31 @@ class TicketController {
     
     async create(req, res, next) {
         try {
-            const {flight_id, seat_number, ticket_status} = req.body
+            let {flight_id, seat_number, ticket_status, flight_info} = req.body
             const {img} = req.files
             let fileName = uuid.v4() + ".jpg"
             img.mv(path.resolve(__dirname, '..', 'static', fileName))
+                  
+
+            const ticket = await Ticket.create({flight_id, seat_number, ticket_status, img: fileName})
             
-            const ticket = await Ticket.create({
-                flight_id, seat_number, ticket_status, img: fileName
-            })
+            if(flight_info) {
+                flight_info = JSON.parse(flight_info)
+                flight_info.forEach(i => {
+                    Flight.create({
+                        route_id: i.route_id,
+                        bus_id: i.bus_id,
+                        service_id: i.service_id,
+                        time_in_ride: i.time_in_ride,
+                        start_time: i.start_time,
+                        finish_time: i.finish_time,
+                        date: i.date,
+                        free_seats: i.free_seats,
+                        price: i.price,
+                        ticketId: ticket.id
+                    })                    
+                });
+            }
             
             return res.json(ticket)
         } catch(e) {
@@ -43,7 +60,26 @@ class TicketController {
     }
 
     async getOne(req, res) {
-        
+        const {id}= req.params
+        const ticket = await Ticket.findOne(
+            {
+                where: {id},
+                include: [{model: Flight, as: 'flight_info'}]
+            }
+        )
+        return res.json(ticket)
+    }
+
+    async deleteAll(req, res) {
+        try {
+            await Ticket.destroy({
+                where: {}, // Указывает, что мы хотим удалить все записи
+            });
+            return res.json({ message: 'Все записи успешно удалены.' });
+        } catch (error) {
+            console.error('Ошибка при удалении записей:', error);
+            return res.status(500).json({ message: 'Ошибка при удалении записей.' });
+        }
     }
 }
 

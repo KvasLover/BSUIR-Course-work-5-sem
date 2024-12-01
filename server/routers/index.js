@@ -9,6 +9,6 @@ router.use('/user', userRouter)
 router.use('/bus', busRouter)
 router.use('/flight', flightRouter)
 router.use('/ticket', ticketRouter)
-ticketRouter
+//ticketRouter
 
 module.exports = router

@@ -67,11 +67,11 @@ BasketTicket.belongsTo(Basket)
 BasketTicket.hasOne(Ticket)
 Ticket.belongsTo(BasketTicket)
 
-Flight.hasMany(Ticket)
-Ticket.belongsTo(Flight)
+Flight.hasMany(Ticket, {foreignKey: "flight_id"})
+Ticket.belongsTo(Flight, {foreignKey: "flight_id"})
 
-Bus.hasMany(Flight)
-Flight.belongsTo(Bus)
+Bus.hasMany(Flight, { foreignKey: 'bus_id' })
+Flight.belongsTo(Bus, { foreignKey: 'bus_id' })
 
 module.exports = {
     User, 

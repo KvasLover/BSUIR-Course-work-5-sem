@@ -6,11 +6,15 @@ class BusController {
         try {
             const {serial_num, model, type, year, seats} = req.body
 
-               
-        const bus = await Bus.create({serial_num, model, type, year, seats})
+            const existingBus = await Bus.findOne({ where: { model } });
+            if (existingBus) {
+                return res.status(400).json({ message: 'Автобус с такой моделью уже существует.' });
+            }
+            
+            const bus = await Bus.create({serial_num, model, type, year, seats})
             return res.json(bus);
         } catch (error) {
-            console.error('Error creating flight:', error);
+            console.error('Error creating bus:', error);
             return res.status(500).json({ message: 'Internal Server Error' });
         }
     }

@@ -43,7 +43,7 @@ class UserController {
             return res.status(401).json({
                 message: "Ты уже залогинился!"
             });
-
+//t
         const user = await User.findOne({where: {username}})
         if(!user) {
             return next(ApiError.internal('Пользователь не найден')) 

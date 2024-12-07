@@ -4,27 +4,57 @@ import { useLocation, Link } from "react-router-dom"; // Импортируем 
 import { LOGIN_ROUTE, REGISTRATION_ROUTE, ADMIN_ROUTE, BASKET_ROUTE } from '../utils/consts';
 import { Context } from ".."; // Импортируем контекст
 import { useNavigate } from "react-router-dom";
+import { registerUser, loginUser } from '../http'
 
 const Auth = () => {
     const { user } = useContext(Context);
     const location = useLocation();
     const isLogin = location.pathname === LOGIN_ROUTE; // Определяем, находимся ли мы на странице авторизации
     const [username, setUsername] = useState(''); // Логин
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState(''); // Пароль
+    
+    const navigate = useNavigate(); // Получаем функцию навигации
 
     // Функция обработки отправки формы
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Username:', username); // Логируем логин
-        console.log('Password:', password); // Логируем пароль
+        /*console.log('Username:', username); // Логируем логин
+        console.log('Password:', password); // Логируем пароль*/
+        try {
+            if (isLogin) {
+                // Логин
+                const response = await loginUser(username, password);
+                user.setIsAuth(true); // Устанавливаем аутентификацию в true
+                console.log(response.user);
+                navigate('/'); // Перенаправляем на главную страницу
+            } else {
+                // Регистрация
+                const response = await registerUser(username, email, password);
+                console.log(response);
+                navigate('/login'); // Перенаправляем на страницу логина после успешной регистрации
+            }
+        } catch (error) {
+            console.error(error.response.data.message); // Логируем ошибку
+            alert(error.response.data.message); // Показываем сообщение об ошибке пользователю
+        }
     };
-
-    const navigate = useNavigate(); // Получаем функцию навигации
 
     const handleLoginClick = () => {
         navigate('/login'); // Переход на страницу логина
     };
-    
+    /*
+    вместо кнопки submit
+    {isLogin ? (
+                    <>
+                        <button onClick={() => user.setIsAuth(true)}>Войти</button> {}
+                        </>
+                    ) : (
+                        <>
+                            <button type="submit" onClick={handleLoginClick}>Зарегистрироваться</button> {}
+                        </>
+                    )}
+    */
     return (
         <div className="auth-container">
             <h2>{isLogin ? 'Авторизация' : 'Регистрация'}</h2>
@@ -39,6 +69,18 @@ const Auth = () => {
                         required
                     />
                 </div>
+                {!isLogin && (
+                    <div className="form-group">
+                        <label htmlFor="email">Email:</label>
+                        <input
+                            type="email"
+                            id="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
+                    </div>
+                )}
                 <div className="form-group">
                     <label htmlFor="password">Пароль:</label>
                     <input
@@ -49,16 +91,8 @@ const Auth = () => {
                         required
                     />
                 </div>
-                {isLogin ? (
-                    <>
-                        <button onClick={() => user.setIsAuth(true)}>Войти</button> {/* Меняем текст кнопки */}
-                    </>
-                ) : (
-                    <>
-                        <button type="submit" onClick={handleLoginClick}>Зарегистрироваться</button> {/* Меняем текст кнопки */}
-                    </>
-                )}
                 
+                <button type="submit">{isLogin ? 'Войти' : 'Зарегистрироваться'}</button>
                 
                 <div className="footer">
                     {isLogin ? (
@@ -72,7 +106,6 @@ const Auth = () => {
                             <Link to={LOGIN_ROUTE}>Войди!</Link> {/* Ссылка на авторизацию */}
                         </>
                     )}
-                    <h1>Статус аутентификации: {user.isAuth ? 'Авторизован' : 'Не авторизован'}</h1>
                 </div>
             </form>
         </div>

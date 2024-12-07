@@ -1,0 +1,35 @@
+nav {
+    background-color: #282c34; /* Цвет фона навигационной панели */
+    padding: 10px; /* Отступы */
+    display: flex; /* Используем flexbox для размещения элементов */
+    justify-content: space-between
+}
+
+ul {
+    list-style-type: none; /* Убираем маркеры списка */
+    padding: 0; /* Убираем отступы */
+    display: flex; /* Используем flexbox для размещения элементов */
+    justify-content: end; /* Размещаем элементы по краям */
+    align-items: center; /* Выравниваем элементы по центру по вертикали */
+}
+
+li {
+    margin-right: 20px; /* Отступы между элементами */
+}
+
+a {
+    color: white; /* Цвет ссылок */
+    text-decoration: none; /* Убираем подчеркивание */
+    padding: 10px 15px; /* Добавляем отступы вокруг текста */
+    transition: background-color 0.3s ease; /* Плавный переход для фона */
+}
+
+li:hover {
+    background-color: #444444; /* Цвет фона при наведении */
+}
+
+/* Новый стиль для правой части меню */
+/*.right-menu {
+    margin-left: auto;  Сдвигаем вправо все элементы в этом контейнере 
+    display: flex;  Используем flexbox для размещения элементов 
+}*/

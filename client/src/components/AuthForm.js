@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import CurrentUser from '../currentUser'; // Импортируем CurrentUser
+import CurrentUser from '../store/currentUser'; // Импортируем CurrentUser
 
 const AuthForm = () => {
     const [isLogin, setIsLogin] = useState(true);

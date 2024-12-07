@@ -1,11 +1,21 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom/client'; // Импортируем createRoot из react-dom/client
 import App from './App';
-//import './index.css'; // Если есть стили
+import { createContext } from 'react';
+import UserStore from './store/UserStore';
+import TicketStore from './store/TicketStore';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+export const Context = createContext(null);
+
+// Создаем корневой элемент
+const root = ReactDOM.createRoot(document.getElementById('root')); // Используем createRoot
+
+// Рендерим приложение
 root.render(
-    <React.StrictMode>
+    <Context.Provider value={{
+        user: new UserStore(),
+        ticket: new TicketStore()
+    }}>
         <App />
-    </React.StrictMode>
+    </Context.Provider>
 );

@@ -1,11 +1,12 @@
-import { Component } from "react";
+//import { Component } from "react";
 import Admin from "./pages/Admin";
-import { ADMIN_ROUTE, BASKET_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, STATION_ROUTE, FLIGHT_ROUTE, BUS_ROUTE } from "./utils/consts";
+import { ADMIN_ROUTE, BASKET_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, STATION_ROUTE, FLIGHT_ROUTE, BUS_ROUTE, ROUTE_ROUTE } from "./utils/consts";
 import Basket from "./pages/Basket";
 import Station from "./pages/Station";
-import FlightPage from "./pages/FlightPage";
+//import FlightPage from "./pages/FlightPage";
 import Auth from "./pages/Auth";
 import BusPage from "./pages/Bus";
+import RoutePage from "./pages/Route";
 
 export const authRoutes = [
     {
@@ -38,5 +39,9 @@ export const publicRoutes = [
     {
         path: BUS_ROUTE + '/:id',
         Component: BusPage
+    },
+    {
+        path: ROUTE_ROUTE + '/:id',
+        Component: RoutePage
     }
 ]

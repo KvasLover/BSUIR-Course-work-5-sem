@@ -19,6 +19,11 @@ export const fetchBus = async (id) => {
     return response.data; // Возвращаем данные
 };
 
+export const fetchRoute = async (id) => {
+    const response = await $host.get(`http://localhost:5000/api/route/${id}`); // Укажите правильный путь к вашему API
+    return response.data; // Возвращаем данные
+};
+
 // Функция для регистрации пользователя
 export const registerUser = async (username, email, password) => {
     const response = await $host.post('/api/user/registration', {

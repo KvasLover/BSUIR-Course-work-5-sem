@@ -15,6 +15,16 @@ class RouteController {
         }
     }
 
+    async getOne(req, res) {
+        const {id}= req.params
+        const route = await Route.findOne(
+            {
+                where: {id}
+            }
+        )
+        return res.json(route)
+    }
+
     async getAll(req, res) {
         //return res.json({ message: 'Все работает' });
         const routes = await Route.findAll()

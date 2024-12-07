@@ -15,6 +15,9 @@ const FlightItem = ({ flight }) => {
             <Link to={`/bus/${flight.bus_id}`} style={{ marginLeft: '10px', color: '#007BFF', textDecoration: 'none' }}>
                 Подробнее про автобус
             </Link>
+            <Link to={`/route/${flight.route_id}`} style={{ marginLeft: '10px', color: '#007BFF', textDecoration: 'none' }}>
+                Подробнее про маршрут
+            </Link>
             <p>Время в пути: {flight.time_in_ride}</p>
             <p>Начало: {flight.start_time}</p>
             <p>Конец: {flight.finish_time}</p>

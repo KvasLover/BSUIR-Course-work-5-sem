@@ -1,0 +1,63 @@
+.auth-container {
+    display: flex; /* Используем flexbox для центрирования */
+    flex-direction: column; /* Вертикальное расположение элементов */
+    justify-content: center; /* Центрируем по вертикали */
+    align-items: center; /* Центрируем по горизонтали */
+    height: 100vh; /* Высота контейнера равна высоте окна */
+}
+
+.auth-form {
+    background-color: #f8f8f8; /* Цвет фона формы */
+    padding: 20px; /* Отступы внутри формы */
+    border-radius: 5px; /* Закругленные углы */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Тень для формы */
+    width: 300px; /* Фиксированная ширина формы */
+}
+
+.form-group {
+    margin-bottom: 15px; /* Отступы между полями ввода */
+}
+
+label {
+    display: block; /* Блоковое отображение метки */
+    margin-bottom: 5px; /* Отступ между меткой и полем ввода */
+}
+
+input {
+    width: calc(100% - 20px); /* Полная ширина полей ввода с учетом отступов */
+    padding: 10px; /* Отступы внутри полей ввода */
+    border: 1px solid #ccc; /* Цвет границы */
+    border-radius: 3px; /* Закругленные углы у полей ввода */
+}
+
+button {
+    width: 100%; /* Полная ширина кнопки */
+    padding: 10px; /* Отступы внутри кнопки */
+    background-color: #282c34; /* Цвет фона кнопки */
+    color: white; /* Цвет текста кнопки */
+    border: none; /* Убираем границу у кнопки */
+    border-radius: 3px; /* Закругленные углы у кнопки */
+    cursor: pointer; /* Курсор при наведении на кнопку */
+}
+
+button:hover {
+    background-color: #444444; /* Цвет фона кнопки при наведении */
+}
+
+/* Стили для ссылок внутри auth-container только */
+.auth-container a {
+    color: #007BFF; /* Меняем цвет на менее яркий синий */
+    text-decoration: none; /* Убираем подчеркивание ссылок */
+}
+
+.auth-container a:hover {
+    color: #0056b3; /* Цвет ссылок при наведении (темнее) */
+}
+
+/* Стили для footer с заголовком и ссылкой */
+.footer {
+    display: flex;
+    align-items: center; /* Центрируем по вертикали элементы в footer */
+    justify-content: space-between; /* Размещаем элементы по краям */
+    width: 100%; /* Занимаем всю ширину родителя */
+}

@@ -3,8 +3,9 @@ import { Link } from "react-router-dom"; // Импортируем Link для �
 import { Context } from ".."; // Импортируем контекст
 import { ADMIN_ROUTE, BASKET_ROUTE, STATION_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE } from "../utils/consts"; // Импортируем маршруты
 import '../styles/NavBar.css';
+import {observer} from "mobx-react-lite"
 
-const NavBar = () => {
+const NavBar = observer(() => {
     const { user } = useContext(Context); // Получаем данные пользователя из контекста
 
     return (
@@ -30,7 +31,7 @@ const NavBar = () => {
                 ) : (
                     <>
                         <li>
-                            <Link to={LOGIN_ROUTE}>Login</Link> {/* Ссылка на страницу входа */}
+                            <Link to={LOGIN_ROUTE} onClick={() => user.setIsAuth(true)}>Login</Link> {/* Ссылка на страницу входа */}
                         </li>
                         <li>
                             <Link to={REGISTRATION_ROUTE}>Register</Link> {/* Ссылка на страницу регистрации */}
@@ -40,6 +41,6 @@ const NavBar = () => {
             </ul>
         </nav>
     );
-};
+});
 
 export default NavBar;

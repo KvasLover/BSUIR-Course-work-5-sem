@@ -1,0 +1,11 @@
+.ticket-item {
+    border: 1px solid #ccc; /* Граница вокруг каждого билета */
+    padding: 10px; /* Отступы внутри элемента */
+    margin: 10px; /* Отступы между билетами */
+    display: flex; /* Используем flexbox для размещения изображения и текста */
+}
+
+.records {
+    display: flex;
+    flex-direction: column; /* Вертикальное расположение элементов */
+}

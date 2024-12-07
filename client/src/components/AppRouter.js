@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom'; // Измените 
 import { authRoutes, publicRoutes } from "../routes";
 import { Context } from '..';
 import { observer } from "mobx-react-lite"
+import BusPage from "../pages/Bus"
 
 const AppRouter =  observer(() => {
     //const isAuth = false; // Замените это на вашу логику аутентификации
@@ -18,6 +19,7 @@ console.log(user)
                 <Route key={path} path={path} element={<Component />} /> // Используйте element вместо component
             ))}
             {/* Добавьте редирект или другие маршруты по умолчанию, если необходимо */}
+            <Route path="/bus/:id" element={BusPage} /> {/* Новый маршрут для автобуса */}
             <Route path="*" element={<Navigate to="/" />} /> {/* Перенаправление по умолчанию */}
         </Routes>
     );

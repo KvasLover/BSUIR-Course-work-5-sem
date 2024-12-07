@@ -30,11 +30,11 @@ export const publicRoutes = [
     {
         path: REGISTRATION_ROUTE,
         Component: Auth 
-    },
+    },/*
     {
         path: FLIGHT_ROUTE + '/:id',
         Component: FlightPage
-    },
+    },*/
     {
         path: BUS_ROUTE + '/:id',
         Component: BusPage

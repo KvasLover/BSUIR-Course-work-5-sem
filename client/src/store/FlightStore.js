@@ -1,9 +1,10 @@
 import {makeAutoObservable} from "mobx"
+import { fetchFlights } from "../http"
 
 //поменял UserStore на FlightStore 
 export default class FlightStore  {
     constructor() {
-        this._flights = [
+        this._flights = [/*
             {"id": 1,
         "route_id": 11,
         "bus_id": 3,
@@ -24,8 +25,8 @@ export default class FlightStore  {
         "date": "01.01.2025",
         "free_seats": 10,
         "price": "300 bucks"}
-        ]
-        this._tickets = [
+        */]
+        /*this._tickets = [
             {"id": 2,
             "flight_id": 17,
             "seat_number": "3",
@@ -36,7 +37,7 @@ export default class FlightStore  {
             "seat_number": "3",
             "ticket_status": 1,
             "img": "08a2fd44-140b-41e2-ae21-24ee47c6e60d.jpg"}
-        ]
+        ]*/
     
         makeAutoObservable(this)
     }
@@ -44,14 +45,19 @@ export default class FlightStore  {
     setFlights(flights) {
         this._flights = flights
     }
-    setTickets(tickets) {
+    /*setTickets(tickets) {
         this._tickets = tickets
-    }
+    }*/
 
     get flights() {
         return this._flights
     }
-    get tickets() {
+    /*get tickets() {
         return this._tickets
+    }*/
+
+    async loadFlights() {
+        const flights = await fetchFlights(); // Получаем рейсы из API
+        this.setFlights(flights); // Устанавливаем рейсы в состояние
     }
 }

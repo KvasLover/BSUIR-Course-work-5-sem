@@ -1,8 +1,8 @@
 import React from "react";
-import { useNavigate, Link } from "react-router-dom"; // Импортируем useNavigate и Link
+import { /*useNavigate, */Link } from "react-router-dom"; // Импортируем useNavigate и Link
 
 const FlightItem = ({ flight }) => {
-    const navigate = useNavigate(); // Используем useNavigate для навигации
+    //const navigate = useNavigate(); // Используем useNavigate для навигации
 
     const handleAddToCart = () => {
         console.log(`Рейс ${flight.id} добавлен в корзину`);
@@ -11,7 +11,7 @@ const FlightItem = ({ flight }) => {
     return (
         <div className="flight-item">
             <h4>Маршрут: {flight.route_id}</h4>
-            <p>Модель автобуса: {flight.bus_id}</p>
+            <p>id автобуса: {flight.bus_id}</p>
             <Link to={`/bus/${flight.bus_id}`} style={{ marginLeft: '10px', color: '#007BFF', textDecoration: 'none' }}>
                 Подробнее про автобус
             </Link>

@@ -6,6 +6,7 @@ const checkRole = require('../middleware/checkRoleMiddleware')
 
 router.post('/', checkRole(1), busController.create)
 router.get('/',busController.getAll)
+router.get('/:id',busController.getOne)
 // доработать метод delete по такому же принципу 26:53
 
 

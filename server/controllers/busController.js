@@ -19,6 +19,16 @@ class BusController {
         }
     }
 
+    async getOne(req, res) {
+        const {id}= req.params
+        const bus = await Bus.findOne(
+            {
+                where: {id}
+            }
+        )
+        return res.json(bus)
+    }
+
     async getAll(req, res) {
         //return res.json({ message: 'Все работает' });
         const buses = await Bus.findAll()

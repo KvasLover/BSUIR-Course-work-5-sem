@@ -9,6 +9,8 @@ import BusStore from './store/BusStore';
 
 export const Context = createContext(null);
 
+//console.log(process.env.REACT_APP_API_URL)
+
 // Создаем корневой элемент
 const root = ReactDOM.createRoot(document.getElementById('root')); // Используем createRoot
 

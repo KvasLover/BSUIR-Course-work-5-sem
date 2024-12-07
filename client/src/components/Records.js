@@ -1,4 +1,4 @@
-import { observer } from "mobx-react-lite";
+/*import { observer } from "mobx-react-lite";
 import { useContext } from "react";
 import { Context } from "..";
 import TicketItem from "./TicketItem"; // Импортируем компонент TicketItem
@@ -16,4 +16,26 @@ const Records = observer(() => {
     );
 });
 
+export default Records;*/
+
+import { observer } from "mobx-react-lite";
+import { useContext } from "react";
+import { Context } from "..";
+import FlightItem from "./FlightItem"; // Импортируем компонент FlightItem
+import '../styles/Station.css'; // Импортируем стили
+
+const Records = observer(() => {
+    const { flight } = useContext(Context);
+
+    return (
+        <div className="records">
+            {flight.flights.map((flight) => (
+                <FlightItem key={flight.id} flight={flight} /> // Проходимся по каждому рейсу
+            ))}
+        </div>
+    );
+});
+
 export default Records;
+
+

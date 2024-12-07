@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom/client'; // Импортируем createRoot и
 import App from './App';
 import { createContext } from 'react';
 import UserStore from './store/UserStore';
-import TicketStore from './store/TicketStore';
+//import TicketStore from './store/TicketStore';
+import FlightStore from './store/FlightStore';
+import BusStore from './store/BusStore';
 
 export const Context = createContext(null);
 
@@ -14,7 +16,8 @@ const root = ReactDOM.createRoot(document.getElementById('root')); // Испол
 root.render(
     <Context.Provider value={{
         user: new UserStore(),
-        ticket: new TicketStore()
+        flight: new FlightStore(),
+        bus: new BusStore()
     }}>
         <App />
     </Context.Provider>

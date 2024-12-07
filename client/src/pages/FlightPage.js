@@ -1,11 +1,11 @@
 import React from "react";
 
-const TicketPage = () => {
+const FlightPage = () => {
     return (
         <div>
-            TicketPage
+            FlightPage
         </div>
     )
 }
 
-export default TicketPage
+export default FlightPage

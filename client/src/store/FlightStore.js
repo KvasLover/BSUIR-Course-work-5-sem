@@ -1,6 +1,7 @@
 import {makeAutoObservable} from "mobx"
 
-export default class UserStore {
+//поменял UserStore на FlightStore 
+export default class FlightStore  {
     constructor() {
         this._flights = [
             {"id": 1,
@@ -15,7 +16,7 @@ export default class UserStore {
         "price": "300 bucks"},
         {"id": 2,
         "route_id": 22,
-        "bus_id": 3,
+        "bus_id": 2,
         "service_id": 2,
         "time_in_ride": "1 час",
         "start_time": "10:00",

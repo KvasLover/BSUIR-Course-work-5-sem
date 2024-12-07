@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import '../styles/Auth.css'; // Импортируем стили
 import { useLocation, Link } from "react-router-dom"; // Импортируем Link для навигации
-import { LOGIN_ROUTE, REGISTRATION_ROUTE } from '../utils/consts';
+import { LOGIN_ROUTE, REGISTRATION_ROUTE, ADMIN_ROUTE, BASKET_ROUTE } from '../utils/consts';
+import { Context } from ".."; // Импортируем контекст
+import { useNavigate } from "react-router-dom";
 
 const Auth = () => {
+    const { user } = useContext(Context);
     const location = useLocation();
     const isLogin = location.pathname === LOGIN_ROUTE; // Определяем, находимся ли мы на странице авторизации
     const [username, setUsername] = useState(''); // Логин
@@ -16,6 +19,12 @@ const Auth = () => {
         console.log('Password:', password); // Логируем пароль
     };
 
+    const navigate = useNavigate(); // Получаем функцию навигации
+
+    const handleLoginClick = () => {
+        navigate('/login'); // Переход на страницу логина
+    };
+    
     return (
         <div className="auth-container">
             <h2>{isLogin ? 'Авторизация' : 'Регистрация'}</h2>
@@ -40,7 +49,16 @@ const Auth = () => {
                         required
                     />
                 </div>
-                <button type="submit">{isLogin ? 'Войти' : 'Зарегистрироваться'}</button> {/* Меняем текст кнопки */}
+                {isLogin ? (
+                    <>
+                        <button onClick={() => user.setIsAuth(true)}>Войти</button> {/* Меняем текст кнопки */}
+                    </>
+                ) : (
+                    <>
+                        <button type="submit" onClick={handleLoginClick}>Зарегистрироваться</button> {/* Меняем текст кнопки */}
+                    </>
+                )}
+                
                 
                 <div className="footer">
                     {isLogin ? (
@@ -54,6 +72,7 @@ const Auth = () => {
                             <Link to={LOGIN_ROUTE}>Войди!</Link> {/* Ссылка на авторизацию */}
                         </>
                     )}
+                    <h1>Статус аутентификации: {user.isAuth ? 'Авторизован' : 'Не авторизован'}</h1>
                 </div>
             </form>
         </div>

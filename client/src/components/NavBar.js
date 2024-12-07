@@ -25,13 +25,13 @@ const NavBar = observer(() => {
                             <Link to={BASKET_ROUTE}>Basket</Link> {/* Ссылка на страницу корзины */}
                         </li>
                         <li>
-                            <Link to="/logout">Logout</Link> {/* Ссылка для выхода */}
+                            <Link to={LOGIN_ROUTE} onClick={() => user.setIsAuth(false)}>Logout</Link> {/* Ссылка для выхода */}
                         </li>
                     </>
                 ) : (
                     <>
                         <li>
-                            <Link to={LOGIN_ROUTE} onClick={() => user.setIsAuth(true)}>Login</Link> {/* Ссылка на страницу входа */}
+                            <Link to={LOGIN_ROUTE}>Login</Link> {/* Ссылка на страницу входа */}
                         </li>
                         <li>
                             <Link to={REGISTRATION_ROUTE}>Register</Link> {/* Ссылка на страницу регистрации */}

@@ -2,8 +2,9 @@ import React, { useContext } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom'; // Измените Switch на Routes
 import { authRoutes, publicRoutes } from "../routes";
 import { Context } from '..';
+import { observer } from "mobx-react-lite"
 
-const AppRouter = () => {
+const AppRouter =  observer(() => {
     //const isAuth = false; // Замените это на вашу логику аутентификации
 const {user} = useContext(Context)
 console.log(user)
@@ -20,6 +21,6 @@ console.log(user)
             <Route path="*" element={<Navigate to="/" />} /> {/* Перенаправление по умолчанию */}
         </Routes>
     );
-};
+});
 
 export default AppRouter;

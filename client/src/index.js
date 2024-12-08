@@ -6,6 +6,7 @@ import UserStore from './store/UserStore';
 //import TicketStore from './store/TicketStore';
 import FlightStore from './store/FlightStore';
 import BusStore from './store/BusStore';
+import { BasketProvider } from './components/BasketContext';
 
 export const Context = createContext(null);
 
@@ -21,6 +22,8 @@ root.render(
         flight: new FlightStore(),
         bus: new BusStore()
     }}>
-        <App />
+        <BasketProvider>
+            <App />
+        </BasketProvider>        
     </Context.Provider>
 );

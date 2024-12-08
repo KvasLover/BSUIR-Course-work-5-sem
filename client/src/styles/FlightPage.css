@@ -1,15 +1,41 @@
-.flight-item {
-    padding: 5%;
-}
-
-.search-form {
-    margin-top: 20px; /* Добавляет отступ снизу формы */
-    
-}
-
+/* src/styles/FlightPage.css */
 .container {
-    width: 1000px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #dfd6d6; /* Светлый фон страницы */
+    color: black; /* Цвет текста */
+    min-height: 85vh
+}
+
+.flight-item {
+    background-color: #f8f4f4; /* Светлый фон карточки */
+    border-radius: 8px; /* Закругленные углы */
+    padding: 20px; /* Отступы внутри карточки */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Легкая тень для эффекта глубины */
+    width: 100%;
+    max-width: 600px; /* Максимальная ширина карточки */
+}
+
+.flight-item h1 {
+    margin-bottom: 20px; /* Отступ снизу заголовка */
+}
+
+.flight-item p {
+    margin: 10px 0; /* Отступы между параграфами */
+}
+
+button {
+    background-color: #007bff; /* Цвет кнопки */
+    color: white; /* Цвет текста кнопки */
+    border: none; /* Убираем границу кнопки */
+    border-radius: 5px; /* Закругленные углы кнопки */
+    padding: 10px 15px; /* Отступы внутри кнопки */
+    cursor: pointer; /* Указатель при наведении на кнопку */
+    transition: background-color 0.3s ease; /* Плавный переход для фона кнопки */
+}
+
+button:hover {
+    background-color: #0056b3; /* Цвет кнопки при наведении */
 }

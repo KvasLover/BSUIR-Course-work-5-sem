@@ -1,26 +1,28 @@
 import React, { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom"; // Импортируем Link и useNavigate
+import { Link, useNavigate, useLocation } from "react-router-dom"; // Импортируем Link и useNavigate
 import { Context } from ".."; // Импортируем контекст
 import { ADMIN_ROUTE, BASKET_ROUTE, STATION_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, MAIN_PAGE_ROUTE, PROFILE_PAGE_ROUTE } from "../utils/consts"; // Импортируем маршруты
 import '../styles/NavBar.css';
 import { observer } from "mobx-react-lite";
-import { useLocation } from 'react-router-dom';
 
 const NavBar = observer(() => {
     const { user } = useContext(Context); // Получаем данные пользователя из контекста
     const navigate = useNavigate(); // Получаем функцию навигации
-
-    /*const handleLogout = () => {
-        user.setIsAuth(false); // Устанавливаем аутентификацию в false
-        user.setRole(''); // Сбрасываем роль
-        navigate(LOGIN_ROUTE); // Перенаправляем на страницу логина
-    };*/
-    const location = useLocation();
+    const location = useLocation()
+    
+    const handleBack = () => {
+        if (location.pathname !== '/')
+            navigate(-1);
+    }
+    
     return (
         <nav>
             <ul>
                 <li>
                     <Link to={MAIN_PAGE_ROUTE}>Главная</Link> {/* Ссылка на главную страницу */}
+                </li>
+                <li>
+                <button className="back-button" onClick={handleBack}>Назад</button>
                 </li>
             </ul>
             <ul>                
@@ -70,7 +72,7 @@ const NavBar = observer(() => {
                 )}
             </ul>
         </nav>
-    );
+    )
 });
 
 export default NavBar;

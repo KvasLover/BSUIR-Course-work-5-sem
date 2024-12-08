@@ -1,17 +1,14 @@
 import React from 'react';
-import { useLocation, useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const FlightItem = ({ flight, tripType }) => {
-    const navigate = useNavigate(); // Получаем функцию навигации
+    const navigate = useNavigate(); 
 
-    //const location = useLocation();
-    //const { flight, tripType } = location.state || {}; // Получа
     if(!flight)
         console.log("хуй")
     console.log(tripType)
     
     const handleAddToCart = () => {
-        // Создаем новый объект с необходимыми полями
         const flightData = {
             id: flight.id,
             name: flight.name,
@@ -27,9 +24,7 @@ const FlightItem = ({ flight, tripType }) => {
             free_seats: flight.free_seats,
             price: flight.price
         };
-        //console.log(tripType)
-        // Переход на FlightPage с передачей параметров рейса и типа поездки
-        //navigate('/flight', { state: { flight: flightData, tripType } });
+        
         navigate('/flight', { state: { flight: flightData, tripType } });
     };
 

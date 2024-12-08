@@ -28,8 +28,16 @@ li:hover {
     background-color: #444444; /* Цвет фона при наведении */
 }
 
-/* Новый стиль для правой части меню */
-/*.right-menu {
-    margin-left: auto;  Сдвигаем вправо все элементы в этом контейнере 
-    display: flex;  Используем flexbox для размещения элементов 
-}*/
+.back-button {
+    color: white; /* Цвет текста */
+    text-decoration: none; /* Убираем подчеркивание */
+    padding: 10px 15px; /* Отступы вокруг текста */
+    background: none; /* Убираем фон кнопки */
+    border: none; /* Убираем границу кнопки */
+    cursor: pointer; /* Изменяем курсор на указатель */
+    transition: background-color 0.3s ease; /* Плавный переход для фона */
+}
+
+.back-button:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Цвет фона при наведении */
+}

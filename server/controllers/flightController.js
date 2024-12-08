@@ -39,6 +39,25 @@ class FlightController {
             return res.status(500).json({ message: 'Ошибка при получении рейсов' });
         }
     }
+    
+    async patchFlight(req, res) {
+        const { id } = req.body
+        const flight = await Flight.findOne({
+            where: {id}
+        })
+
+        if(!flight) {
+            return res.status(500).json({ message: 'Такого рейса нет!' });
+        }
+
+        if(req.body.date) {
+            flight.date = req.body.date
+        }
+        
+        await flight.save();
+
+        return res.json(flight)
+    }
 
     async deleteAll(req, res) {
         try {

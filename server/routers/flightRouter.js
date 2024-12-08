@@ -6,6 +6,7 @@ router.post('/', flightController.create)
 router.get('/',flightController.getAll)
 router.delete('/', flightController.deleteAll)
 router.get('/flights/model/:id', flightController.getModel);
+router.patch('/', flightController.patchFlight)
 // доработать метод delete по такому же принципу 26:53
 
 

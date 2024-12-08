@@ -32,7 +32,7 @@ const NavBar = observer(() => {
                                     <Link to={STATION_ROUTE}>Расписание</Link> {/* Ссылка на расписание */}
                                 </li>
                                 <li>
-                                    <Link to={BASKET_ROUTE}>Корзина{location.pathname}</Link> {/* Ссылка на корзину */}
+                                    <Link to={BASKET_ROUTE}>Корзина</Link> {/* Ссылка на корзину */}
                                 </li>
                                 <li>
                                     <Link to={LOGIN_ROUTE}>Выйти из аккаунта</Link> {/* Выйти из аккаунта */}
@@ -40,6 +40,9 @@ const NavBar = observer(() => {
                             </>
                         ) : (
                             <>
+                                <li>
+                                    <Link to={STATION_ROUTE}>Расписание</Link> {/* Ссылка на расписание */}
+                                </li>
                                 <li>
                                     <Link to={ADMIN_ROUTE}>Админ панель</Link> {/* Ссылка на админскую панель */}
                                 </li>
@@ -51,6 +54,9 @@ const NavBar = observer(() => {
                     </>
                 ) : (
                     <>
+                        <li>
+                            <Link to={STATION_ROUTE}>Расписание</Link> {/* Ссылка на расписание */}
+                        </li>
                         <li>
                             <Link to={LOGIN_ROUTE}>Войти</Link> {/* Ссылка на страницу входа */}
                         </li>
@@ -65,4 +71,3 @@ const NavBar = observer(() => {
 });
 
 export default NavBar;
-//А можно параметрически задать адрес

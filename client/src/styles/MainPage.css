@@ -1,0 +1,85 @@
+/* MainPage.css */
+.main-page {
+    text-align: center; /* Центрируем текст */
+}
+
+.main-header {
+    position: relative; /* Позволяет позиционировать дочерние элементы */
+}
+
+.header-image {
+    width: 100%; /* Ширина изображения на 100% от родительского контейнера */
+    height: auto; /* Высота автоматически определяется пропорциями изображения */
+    display: block; /* Убираем пробелы под изображением */
+}
+
+.search-block {
+    margin: 20px auto; /* Отступ сверху и снизу */
+    padding: 20px;
+    border: 1px solid #ddd; /* Рамка вокруг блока */
+    border-radius: 8px; /* Скругляем углы блока */
+    background-color: #f9f9f9; /* Фон блока */
+    max-width: 600px; /* Максимальная ширина блока */
+}
+
+.search-form {
+    display: flex;
+    flex-direction: column; /* Выравниваем элементы по вертикали */
+}
+
+.form-group {
+    margin-bottom: 15px; /* Отступ между полями ввода */
+}
+
+.form-group label {
+    display: block; /* Метки занимают всю ширину */
+    margin-bottom: 5px; /* Отступ между меткой и полем ввода */
+    text-align: left; /* Выравниваем текст метки по левому краю */
+}
+
+.form-group input[type="text"],
+.form-group input[type="date"] {
+    width: 100%; /* Поля ввода занимают всю ширину блока */
+    padding: 10px; /* Отступ внутри полей ввода */
+    border: 1px solid #ccc; /* Рамка поля ввода */
+    border-radius: 4px; /* Скругляем углы полей ввода */
+}
+
+.trip-type {
+    display: flex;
+    flex-direction: column;
+}
+
+.toggle-switch {
+    display: flex;
+    justify-content: space-between;
+}
+
+.toggle-switch input[type='radio'] {
+    display: none; /* Скрываем стандартные радиокнопки */
+}
+
+.toggle-switch label {
+    flex-grow: 1;
+    padding: 10px;
+    background-color: #282c34; /* Цвет фона переключателя по умолчанию черный */
+    color: white; /* Цвет текста переключателя белый */
+    text-align: center;
+    cursor: pointer; /* Курсор при наведении на переключатель */
+}
+
+
+
+.toggle-switch label:hover {
+    background-color: gray; /* Цвет фона при наведении на переключатель */
+}
+
+/* Убираем округление в месте соприкосновения меток переключателя */
+.toggle-switch label:first-child {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.toggle-switch label:last-child {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}

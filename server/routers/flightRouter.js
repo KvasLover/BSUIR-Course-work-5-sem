@@ -4,6 +4,7 @@ const flightController = require('../controllers/flightController')
 
 router.post('/', flightController.create)
 router.get('/',flightController.getAll)
+router.get('/flights/model/:id', flightController.getModel);
 // доработать метод delete по такому же принципу 26:53
 
 

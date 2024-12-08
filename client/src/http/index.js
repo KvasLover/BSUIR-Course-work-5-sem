@@ -19,6 +19,11 @@ export const fetchBus = async (id) => {
     return response.data; // Возвращаем данные
 };
 
+export const fetchBuseModelFromFlight = async (bus_id) => {
+    const response = await $host.get(`/api/flights/model?bus_id=${bus_id}`); // Укажите правильный путь к вашему API
+    return response.data; // Возвращаем данные
+};
+
 export const fetchRoute = async (id) => {
     const response = await $host.get(`http://localhost:5000/api/route/${id}`); // Укажите правильный путь к вашему API
     return response.data; // Возвращаем данные

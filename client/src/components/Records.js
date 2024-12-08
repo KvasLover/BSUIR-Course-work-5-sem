@@ -6,7 +6,8 @@ import '../styles/Station.css'; // Импортируем стили
 
 const Records = observer(() => {
     const { flight } = useContext(Context);
-
+    const busId= flight.busId
+    
     useEffect(() => {
         flight.loadFlights(); // Загружаем рейсы при монтировании компонента
     }, [flight]);

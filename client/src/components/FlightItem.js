@@ -11,7 +11,7 @@ const FlightItem = ({ flight }) => {
     return (
         <div className="flight-item">
             <h4>Маршрут: {flight.route_id}</h4>
-            <p>id автобуса: {flight.bus_id}</p>
+            <p>Модель автобуса: {flight.BusAliasForGettingBusModelInFlight ? flight.BusAliasForGettingBusModelInFlight.model : 'Неизвестно'}</p> {/* Отображаем модель автобуса */}
             <Link to={`/bus/${flight.bus_id}`} style={{ marginLeft: '10px', color: '#007BFF', textDecoration: 'none' }}>
                 Подробнее про автобус
             </Link>

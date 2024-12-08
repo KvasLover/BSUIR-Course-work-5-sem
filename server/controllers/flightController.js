@@ -1,4 +1,4 @@
-const {Flight} = require('../models/models')
+const {Flight, Bus} = require('../models/models')
 const ApiError = require('../error/ApiError')
 
 class FlightController {
@@ -29,8 +29,27 @@ class FlightController {
     }
 
     async getAll(req, res) {
-        const flights = await Flight.findAll()
+        const flights = await Flight.findAll({
+            //where: { bus_id }, // Фильтруем по bus_id
+            include: [{ model: Bus,
+                as: 'BusAliasForGettingBusModelInFlight'
+             }] // Включаем данные об автобусах
+        });
         return res.json(flights)
+    }
+
+    async getModel(req, res) {
+        const { bus_id } = req.query;
+        try {
+            const flights = await Flight.findAll({
+                //where: { bus_id }, // Фильтруем по bus_id
+                include: [{ model: Bus }] // Включаем данные об автобусах
+            });
+            return res.json(flights);
+        } catch (error) {
+            console.error('Ошибка при получении рейсов:', error);
+            return res.status(500).json({ message: 'Ошибка при получении рейсов' });
+        }
     }
 
     async deleteAll(req, res) {

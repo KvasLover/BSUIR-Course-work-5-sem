@@ -1,6 +1,7 @@
 import { makeAutoObservable } from "mobx";
 
 export default class UserStore {
+    role = null;
     constructor() {
         this._isAuth = false; // Изначально не авторизован
         this._user = {};

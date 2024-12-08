@@ -6,9 +6,10 @@ const router = new Router()
 router.post('/registration', userController.registration)
 router.post('/login', userController.login)
 router.post('/quit', userController.quit)
-router.get('/auth', userController.check)
-router.get('/getAll', userController.getAll)
-
+router.delete('/', userController.deleteAll)
+router.patch('/', userController.patchUser)
+router.get('/', userController.getAll)
+router.delete('/:id', userController.deleteOne)
 
 /*
 Простейший запрос для проверки навигации

@@ -1,12 +1,13 @@
 const sequelize = require('../db')
 const {DataTypes} = require('sequelize')
 
+// role = 1 - client, 2 - admin
 const User = sequelize.define('user', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     username: {type: DataTypes.STRING, unique: true},
     email: {type: DataTypes.STRING, unique: true},
     password: {type: DataTypes.STRING}, 
-    role: {type: DataTypes.INTEGER, defaultValue: 2}
+    role: {type: DataTypes.INTEGER, defaultValue: 1}
 })
 
 const Review = sequelize.define('review', {

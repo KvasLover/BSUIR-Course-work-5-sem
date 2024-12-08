@@ -1,60 +1,52 @@
 import React, { useState, useContext } from 'react';
 import '../styles/Auth.css'; // Импортируем стили
 import { useLocation, Link } from "react-router-dom"; // Импортируем Link для навигации
-import { LOGIN_ROUTE, REGISTRATION_ROUTE, ADMIN_ROUTE, BASKET_ROUTE } from '../utils/consts';
+import { LOGIN_ROUTE, REGISTRATION_ROUTE, ADMIN_ROUTE, BASKET_ROUTE, MAIN_PAGE_ROUTE } from '../utils/consts';
 import { Context } from ".."; // Импортируем контекст
 import { useNavigate } from "react-router-dom";
 import { registerUser, loginUser } from '../http'
 
 const Auth = () => {
     const { user } = useContext(Context);
+    //const [user, setSetUser] = useState(null); 
     const location = useLocation();
     const isLogin = location.pathname === LOGIN_ROUTE; // Определяем, находимся ли мы на странице авторизации
     const [username, setUsername] = useState(''); // Логин
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState(''); // Пароль
+    const [password, setPassword] = useState('');
+    
     
     const navigate = useNavigate(); // Получаем функцию навигации
 
     // Функция обработки отправки формы
     const handleSubmit = async (e) => {
         e.preventDefault();
-        /*console.log('Username:', username); // Логируем логин
-        console.log('Password:', password); // Логируем пароль*/
+        
         try {
             if (isLogin) {
                 // Логин
                 const response = await loginUser(username, password);
-                user.setIsAuth(true); // Устанавливаем аутентификацию в true
-                console.log(response.user);
-                navigate('/'); // Перенаправляем на главную страницу
+                user.role = response.user.role; // Устанавливаем роль пользователя из ответа
+                user.setIsAuth(true);                
+                navigate(MAIN_PAGE_ROUTE); // Перенаправляем на главную страницу
             } else {
                 // Регистрация
                 const response = await registerUser(username, email, password);
                 console.log(response);
-                navigate('/login'); // Перенаправляем на страницу логина после успешной регистрации
+                navigate(LOGIN_ROUTE); // Перенаправляем на страницу логина после успешной регистрации
             }
         } catch (error) {
-            console.error(error.response.data.message); // Логируем ошибку
-            alert(error.response.data.message); // Показываем сообщение об ошибке пользователю
+            // Проверяем, есть ли response в ошибке
+            const errorMessage = error.response ? error.response.data.message : 'Произошла ошибка. Попробуйте еще раз.';
+            console.error(errorMessage); // Логируем ошибку
+            alert(errorMessage); // Показываем сообщение об ошибке пользователю
         }
     };
 
-    const handleLoginClick = () => {
+    /*const handleLoginClick = () => {
         navigate('/login'); // Переход на страницу логина
-    };
-    /*
-    вместо кнопки submit
-    {isLogin ? (
-                    <>
-                        <button onClick={() => user.setIsAuth(true)}>Войти</button> {}
-                        </>
-                    ) : (
-                        <>
-                            <button type="submit" onClick={handleLoginClick}>Зарегистрироваться</button> {}
-                        </>
-                    )}
-    */
+    };*/
+    
     return (
         <div className="auth-container">
             <h2>{isLogin ? 'Авторизация' : 'Регистрация'}</h2>

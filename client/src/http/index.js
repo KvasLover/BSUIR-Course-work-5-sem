@@ -29,13 +29,13 @@ export const fetchRoute = async (id) => {
     return response.data; // Возвращаем данные
 };
 
-// Функция для регистрации пользователя
-export const registerUser = async (username, email, password) => {
+// role = 1 - client, 2 - admin
+export const registerUser = async (username, email, password, role) => {
     const response = await $host.post('/api/user/registration', {
         username,
         email,
-        password
-        //role: 2 // Можно задать роль по умолчанию или передавать как параметр
+        password,
+        role
     });
     return response.data; // Возвращаем данные о пользователе
 };
@@ -44,7 +44,7 @@ export const registerUser = async (username, email, password) => {
 export const loginUser = async (username, password) => {
     const response = await $host.post('/api/user/login', {
         username,
-        password
+        password 
     });
     return response.data; // Возвращаем данные о пользователе
 };

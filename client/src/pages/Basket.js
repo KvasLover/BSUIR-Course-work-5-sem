@@ -1,31 +1,29 @@
 import React, { useContext } from 'react';
-import { BasketContext } from '../components/BasketContext'
+import { BasketContext } from '../components/BasketContext'; // Импортируйте ваш контекст корзины
+import '../styles/Basket.css'; // Импортируем стили для корзины
 
 const Basket = () => {
     const { basketItems } = useContext(BasketContext); // Получаем элементы корзины
 
     return (
-        <div>
+        <div className="container">
             <h1>Корзина</h1>
             {basketItems.length > 0 ? (
                 basketItems.map((item) => (
-                    <div key={item.id}>
-                        <h2>{item.name}</h2>
-                        <div>
-                <p>Пункт отправления: {item.start_location}</p>
-                <p>Пункт прибытия: {item.finish_location}</p>
-                <p>Модель автобуса: {item.BusAliasForGettingBusModelInFlight ? item.BusAliasForGettingBusModelInFlight.model : 'Неизвестно'}</p>
-                <p>Время в пути: {item.time_in_ride}</p>
-                <p>Время отправления: {item.start_time}</p>
-                <p>Время прибытия: {item.finish_time}</p>
-                <p>Дата: {item.date}</p>
-                <p>Свободные места: {item.free_seats}</p>
-                <p>Цена: {item.price}</p>
-            </div>
+                    <div className="flight-item" key={item.id}>
+                        <p><strong>Пункт отправления: </strong>{item.start_location}</p>
+                        <p><strong>Пункт прибытия: </strong>{item.finish_location}</p>
+                        <p><strong>Модель автобуса: </strong>{item.BusAliasForGettingBusModelInFlight ? item.BusAliasForGettingBusModelInFlight.model : 'Неизвестно'}</p>
+                        <p><strong>Время в пути: </strong>{item.time_in_ride}</p>
+                        <p><strong>Время отправления: </strong>{item.start_time}</p>
+                        <p><strong>Время прибытия: </strong>{item.finish_time}</p>
+                        <p><strong>Дата: </strong>{item.date}</p>
+                        <p><strong>Свободные места: </strong>{item.free_seats}</p>
+                        <p><strong>Цена: </strong>{item.price}</p>
                     </div>
                 ))
             ) : (
-                <p>Корзина пуста.</p>
+                <p>Ваша корзина пуста.</p>
             )}
         </div>
     );

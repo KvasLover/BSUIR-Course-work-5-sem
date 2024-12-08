@@ -1,0 +1,27 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #dfd6d6; /* Светлый фон страницы */
+    color: black; /* Цвет текста */
+    min-height: 85vh; /* Минимальная высота 100% от высоты окна браузера */
+}
+
+.flight-item {
+    background-color: #f8f4f4; /* Светлый фон карточки */
+    border-radius: 8px; /* Закругленные углы */
+    padding: 20px; /* Отступы внутри карточки */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Легкая тень для эффекта глубины */
+    width: 100%;
+    max-width: 600px; /* Максимальная ширина карточки */
+    margin-bottom: 20px; /* Отступ между карточками */
+}
+
+.flight-item h2 {
+    margin-bottom: 10px; /* Отступ снизу заголовка */
+}
+
+.flight-item p {
+    margin: 5px 0; /* Отступы между параграфами */
+}

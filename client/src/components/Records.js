@@ -15,7 +15,8 @@ const Records = observer(() => {
     const startLocation = queryParams.get('start');
     const finishLocation = queryParams.get('finish');
     const travelDate = queryParams.get('date');
-
+    const tripType = queryParams.get('type');
+    
     useEffect(() => {
         flight.loadFlights(); // Загружаем рейсы при монтировании компонента
     }, [flight]);
@@ -27,7 +28,7 @@ const Records = observer(() => {
                 (startLocation ? flight.start_location === startLocation : true) &&
                 (finishLocation ? flight.finish_location === finishLocation : true) &&
                 (travelDate ? flight.date === travelDate : true)
-            );
+            ); 
         })
         : flight.flights; // Если ни один параметр отсутствует, показываем все рейсы
 
@@ -36,6 +37,11 @@ const Records = observer(() => {
         navigate('/station'); // Перенаправляем на страницу расписания без параметров
     };
 
+  /*  const handleAddToCart = (flight) => {
+        console.log(tripType)
+        return navigate('/flight', { state: { flight, tripType } });
+    };*/
+//onClick={onAddToCart}
     return (
         <div className="records">
             <button onClick={handleResetFilters} className="reset-button">
@@ -43,7 +49,8 @@ const Records = observer(() => {
             </button>
             {filteredFlights.length > 0 ? (
                 filteredFlights.map((flight) => (
-                    <FlightItem key={flight.id} flight={flight} /> // Проходимся по каждому отфильтрованному рейсу
+                    <FlightItem key={flight.id} flight={flight}  tripType={tripType}
+                    /*onAddToCart={handleAddToCart}*//*type={type}*//> // Проходимся по каждому отфильтрованному рейсу
                 ))
             ) : (
                 <p>Рейсы не найдены по заданным критериям.</p> // Сообщение, если рейсы не найдены

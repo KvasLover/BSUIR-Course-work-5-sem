@@ -8,12 +8,12 @@ import { registerUser, loginUser } from '../http'
 
 const Auth = () => {
     const { user } = useContext(Context);
-    //const [user, setSetUser] = useState(null); 
     const location = useLocation();
     const isLogin = location.pathname === LOGIN_ROUTE; // Определяем, находимся ли мы на странице авторизации
     const [username, setUsername] = useState(''); // Логин
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    
     
     
     const navigate = useNavigate(); // Получаем функцию навигации
@@ -27,6 +27,7 @@ const Auth = () => {
                 // Логин
                 const response = await loginUser(username, password);
                 user.role = response.user.role; // Устанавливаем роль пользователя из ответа
+                user.setUser(response.user);
                 user.setIsAuth(true);                
                 navigate(MAIN_PAGE_ROUTE); // Перенаправляем на главную страницу
             } else {

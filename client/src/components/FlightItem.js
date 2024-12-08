@@ -1,13 +1,22 @@
 import React from "react";
-import { /*useNavigate, */Link } from "react-router-dom"; // Импортируем useNavigate и Link
+import { useNavigate, Link } from "react-router-dom"; // Импортируем useNavigate и Link
 
 const FlightItem = ({ flight }) => {
-    //const navigate = useNavigate(); // Используем useNavigate для навигации
+    const navigate = useNavigate(); // Используем useNavigate для навигации
 
     const handleAddToCart = () => {
-        console.log(`Рейс ${flight.id} добавлен в корзину`);
-    };
-
+        // Создаем новый объект с необходимыми полями
+        const flightData = {
+            id: flight.id,
+            name: flight.name,
+            start_location: flight.start_location,
+            finish_location: flight.finish_location,
+            date: flight.date,
+            // Добавьте другие необходимые поля
+        };
+        navigate('/flight', { state: { flight: flightData } });
+    }
+    
     return (
         <div className="flight-item">  
             <p>Пункт отправления: {flight.start_location}</p>

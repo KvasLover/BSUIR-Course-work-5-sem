@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom"; // Импортируем Link и useNavigate
 import { Context } from ".."; // Импортируем контекст
-import { ADMIN_ROUTE, BASKET_ROUTE, STATION_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, MAIN_PAGE_ROUTE } from "../utils/consts"; // Импортируем маршруты
+import { ADMIN_ROUTE, BASKET_ROUTE, STATION_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, MAIN_PAGE_ROUTE, PROFILE_PAGE_ROUTE } from "../utils/consts"; // Импортируем маршруты
 import '../styles/NavBar.css';
 import { observer } from "mobx-react-lite";
 import { useLocation } from 'react-router-dom';
@@ -36,6 +36,9 @@ const NavBar = observer(() => {
                                 </li>
                                 <li>
                                     <Link to={LOGIN_ROUTE}>Выйти из аккаунта</Link> {/* Выйти из аккаунта */}
+                                </li>
+                                <li>
+                                    <Link to={PROFILE_PAGE_ROUTE}>Мой профиль</Link> {/* Выйти из аккаунта */}
                                 </li>
                             </>
                         ) : (

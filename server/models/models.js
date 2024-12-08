@@ -7,7 +7,9 @@ const User = sequelize.define('user', {
     username: {type: DataTypes.STRING, unique: true},
     email: {type: DataTypes.STRING, unique: true},
     password: {type: DataTypes.STRING}, 
-    role: {type: DataTypes.INTEGER, defaultValue: 1}
+    role: {type: DataTypes.INTEGER, defaultValue: 1},
+    //img: {type: DataTypes.STRING, allowNull: true}
+    balance: {type: DataTypes.STRING}
 })
 
 const Review = sequelize.define('review', {

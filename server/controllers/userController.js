@@ -57,13 +57,14 @@ class UserController {
                 id: user.id,
                 username: user.username,
                 email: user.email,
-                role: user.role
+                role: user.role,
+                balance: user.balance
             }
         });
     }
         
     async patchUser(req,res) {
-        const { id } = req.body
+        const { id, balance } = req.body
         const user = await User.findOne({
             where: {id}
         })
@@ -72,14 +73,40 @@ class UserController {
             return res.status(500).json({ message: 'Такого пользователя нет!' });
         }
 
-        if(req.body.role) {
+        /*if(req.body.role) {
             user.role = req.body.role
-        }
+        }*/
+       user.balance = balance
         
         await user.save();
 
         return res.json(user)
     }       
+
+    /*async uploadProfileImage(req, res, next) {
+        try {
+            const userId = req.user.id; // Получаем ID пользователя из токена или сессии
+            if (!req.file) {
+                return next(ApiError.badRequest('Файл не был загружен.'));
+            }
+
+            const imgPath = `/static/${req.file.filename}`; // Путь к загруженному файлу
+
+            // Обновляем изображение профиля в базе данных
+            const user = await User.findByPk(userId);
+            if (!user) {
+                return next(ApiError.badRequest('Пользователь не найден'));
+            }
+
+            user.img = imgPath; // Устанавливаем новое изображение
+            await user.save(); // Сохраняем изменения в базе данных
+
+            return res.status(200).json({ img: imgPath }); // Возвращаем путь к изображению
+        } catch (error) {
+            console.error(error);
+            return next(ApiError.internal('Ошибка при загрузке изображения.'));
+        }
+    }*/
 
     async deleteAll(req, res) {
         const {id}= req.params

@@ -48,3 +48,12 @@ export const loginUser = async (username, password) => {
     });
     return response.data; // Возвращаем данные о пользователе
 };
+
+export const uploadImage = async (formData) => {
+    const response = await axios.post('/api/upload', formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+    });
+    return response.data; // Предполагается, что сервер возвращает объект с полем img
+};

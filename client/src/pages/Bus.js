@@ -1,46 +1,53 @@
+import '../styles/Bus.css'; // Импортируем стили
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"; // Для получения параметров из URL
-import { fetchBus } from '../http'; // Импортируйте функцию для получения автобуса
+import { useParams } from "react-router-dom"; 
+import { fetchBus } from '../http'; 
 
-const BusPage = () => {
-    const { id } = useParams(); // Получаем ID автобуса из URL
-    const [bus, setBus] = useState(null); // Состояние для хранения данных автобуса
-    const [loading, setLoading] = useState(true); // Состояние загрузки
-    const [error, setError] = useState(null); // Состояние ошибки
+const Bus = () => {
+    const { id } = useParams(); 
+    const [bus, setBus] = useState(null); 
+    const [loading, setLoading] = useState(true); 
+    const [error, setError] = useState(null); 
 
     useEffect(() => {
         const getBus = async () => {
             try {
-                const data = await fetchBus(id); // Получаем данные о автобусе по ID
-                setBus(data); // Устанавливаем данные в состояние
+                const data = await fetchBus(id); 
+                setBus(data); 
             } catch (err) {
-                setError(err.message); // Устанавливаем сообщение об ошибке
+                setError(err.message); 
             } finally {
-                setLoading(false); // Завершаем загрузку
+                setLoading(false); 
             }
         };
 
-        getBus(); // Вызываем функцию получения данных о автобусе
-    }, [id]); // Зависимость от ID автобуса
+        getBus(); 
+    }, [id]); 
 
-    if (loading) return <div>Загрузка...</div>; // Отображаем сообщение о загрузке
-    if (error) return <div>Ошибка: {error}</div>; // Отображаем сообщение об ошибке
+    if (loading) return <div className="loading-message">Загрузка...</div>; 
+    if (error) return <div className="error-message">Ошибка: {error}</div>; 
+    
+    const imageUrl = bus ? `http://localhost:5000/static/${bus.img}` : '';
 
     return (
-        <div>
-            <h2>Информация об автобусе</h2>
+        <div className="bus-container">
+            <div className="bus-info">
+                <h2 className="bus-title">Информация об автобусе</h2>
+                {bus && (
+                    <>
+                        <p className="bus-info">Серийный номер: {bus.serial_num}</p>
+                        <p className="bus-info">Модель: {bus.model}</p>
+                        <p className="bus-info">Тип: {bus.type}</p>
+                        <p className="bus-info">Год выпуска: {bus.year}</p>
+                        <p className="bus-info">Количество мест: {bus.seats}</p>
+                    </>
+                )}
+            </div>
             {bus && (
-                <>
-                    <p>ID: {bus.id}</p>
-                    <p>Серийный номер: {bus.serial_num}</p>
-                    <p>Модель: {bus.model}</p>
-                    <p>Тип: {bus.type}</p>
-                    <p>Год выпуска: {bus.year}</p>
-                    <p>Количество мест: {bus.seats}</p>
-                </>
+                <img src={imageUrl} alt={bus.model} className="bus-image" /> 
             )}
         </div>
     );
 };
 
-export default BusPage;
+export default Bus;

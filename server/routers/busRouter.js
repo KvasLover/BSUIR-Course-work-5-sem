@@ -4,9 +4,11 @@ const busController = require('../controllers/busController')
 const checkRole = require('../middleware/checkRoleMiddleware')
 
 
-router.post('/', checkRole(1), busController.create)
+router.post('/', /*checkRole(1), */busController.create)
 router.get('/',busController.getAll)
 router.get('/:id',busController.getOne)
+router.delete('/', busController.deleteAll)
+router.patch('/', busController.patchBus)
 // доработать метод delete по такому же принципу 26:53
 
 

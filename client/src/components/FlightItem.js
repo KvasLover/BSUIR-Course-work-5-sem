@@ -9,8 +9,9 @@ const FlightItem = ({ flight }) => {
     };
 
     return (
-        <div className="flight-item">
-            <h4>Маршрут: {flight.route_id}</h4>
+        <div className="flight-item">  
+            <p>Пункт отправления: {flight.start_location}</p>
+            <p>Пункт прибытия: {flight.finish_location}</p>          
             <p>Модель автобуса: {flight.BusAliasForGettingBusModelInFlight ? flight.BusAliasForGettingBusModelInFlight.model : 'Неизвестно'}</p> {/* Отображаем модель автобуса */}
             <Link to={`/bus/${flight.bus_id}`} style={{ marginLeft: '10px', color: '#007BFF', textDecoration: 'none' }}>
                 Подробнее про автобус
@@ -19,8 +20,8 @@ const FlightItem = ({ flight }) => {
                 Подробнее про маршрут
             </Link>
             <p>Время в пути: {flight.time_in_ride}</p>
-            <p>Начало: {flight.start_time}</p>
-            <p>Конец: {flight.finish_time}</p>
+            <p>Время отправления: {flight.start_time}</p>
+            <p>Время прибытия: {flight.finish_time}</p>
             <p>Дата: {flight.date}</p>
             <p>Свободные места: {flight.free_seats}</p>
             <p>Цена: {flight.price}</p>

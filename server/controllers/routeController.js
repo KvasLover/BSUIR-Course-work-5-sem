@@ -4,10 +4,10 @@ const ApiError = require('../error/ApiError')
 class RouteController {
     async create(req, res) {
         try {
-            const {start_location, finish_location, number} = req.body
+            const {id, number, info} = req.body
 
                
-        const route = await Route.create({start_location, finish_location, number})
+        const route = await Route.create({id, number, info})
             return res.json(route);
         } catch (error) {
             console.error('Error creating flight:', error);

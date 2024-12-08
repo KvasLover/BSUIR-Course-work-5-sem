@@ -4,14 +4,14 @@ const ApiError = require('../error/ApiError')
 class BusController {
     async create(req, res) {
         try {
-            const {serial_num, model, type, year, seats} = req.body
+            const {id, serial_num, model, type, year, seats} = req.body
 
             const existingBus = await Bus.findOne({ where: { model } });
             if (existingBus) {
                 return res.status(400).json({ message: 'Автобус с такой моделью уже существует.' });
             }
             
-            const bus = await Bus.create({serial_num, model, type, year, seats})
+            const bus = await Bus.create({id, serial_num, model, type, year, seats})
             return res.json(bus);
         } catch (error) {
             console.error('Error creating bus:', error);
@@ -30,9 +30,27 @@ class BusController {
     }
 
     async getAll(req, res) {
-        //return res.json({ message: 'Все работает' });
         const buses = await Bus.findAll()
         return res.json(buses)
+    }
+
+    async patchBus(req,res) {
+        const { id } = req.body
+        const bus = await Bus.findOne({
+            where: {id}
+        })
+
+        if(!bus) {
+            return res.status(500).json({ message: 'Такого автобуса нет!' });
+        }
+
+        if(req.body.img) {
+            bus.img = req.body.img
+        }
+        
+        await bus.save();
+
+        return res.json(bus)
     }
 
     async deleteAll(req, res) {

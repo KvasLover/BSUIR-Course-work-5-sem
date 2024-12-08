@@ -37,7 +37,9 @@ const Ticket = sequelize.define('ticket', {
 
 const Flight = sequelize.define('flight', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},    
-    route_id: {type: DataTypes.INTEGER},    
+    route_id: {type: DataTypes.INTEGER},
+    start_location: {type: DataTypes.STRING},
+    finish_location: {type: DataTypes.STRING},    
     bus_id: {type: DataTypes.INTEGER},    
     service_id: {type: DataTypes.INTEGER},    
     time_in_ride: {type: DataTypes.STRING},    
@@ -54,14 +56,18 @@ const Bus = sequelize.define('bus', {
     model: {type: DataTypes.STRING, unique: true},
     type: {type: DataTypes.INTEGER},
     year: {type: DataTypes.INTEGER},
-    seats: {type: DataTypes.INTEGER}
+    seats: {type: DataTypes.INTEGER},
+    img: {type: DataTypes.STRING}
 })
 
 const Route = sequelize.define('route', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},    
     /*start_location: {type: DataTypes.STRING},
     finish_location: {type: DataTypes.STRING},*/
-    number: {type: DataTypes.STRING}
+    number: {type: DataTypes.STRING},
+    // Описание красивых пейзажей
+    info: {type: DataTypes.STRING},
+    img: {type: DataTypes.STRING}
 })
 
 User.hasOne(Basket, {foreignKey: "user_id"})

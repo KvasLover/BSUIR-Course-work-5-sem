@@ -30,11 +30,9 @@ const RoutePage = () => {
         <div>
             <h2>Информация о маршруте</h2>
             {route && (
-                <>
-                    <p>ID: {route.id}</p>
-                    <p>Пункт отправления: {route.start_location}</p>
-                    <p>Пункт прибытия: {route.finish_location}</p>
+                <>                                    
                     <p>Номер маршрута: {route.number}</p>
+                    <p>Описание: {route.info}</p>    
                 </>
             )}
         </div>

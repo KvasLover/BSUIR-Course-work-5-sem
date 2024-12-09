@@ -1,0 +1,58 @@
+/* src/styles/Admin.css */
+.admin-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #dfd6d6; /* Светлый фон страницы */
+    color: black; /* Цвет текста */
+}
+
+.admin-category {
+    background-color: #f8f4f4; /* Светлый фон карточки */
+    border-radius: 8px; /* Закругленные углы */
+    padding: 20px; /* Отступы внутри карточки */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Легкая тень для эффекта глубины */
+    width: 100%;
+    max-width: 600px; /* Максимальная ширина карточки */
+    margin-bottom: 20px; /* Отступ между карточками */
+}
+
+.admin-category h2 {
+    margin-bottom: 10px; /* Отступ снизу заголовка */
+}
+
+.admin-category input {
+    margin-bottom: 10px; /* Отступ снизу поля ввода */
+}
+
+.admin-category button {
+    margin-right: 10px; /* Отступ между кнопками вправо */
+    margin-bottom: 5px; /* Отступ снизу кнопок для лучшего визуального восприятия */
+}
+
+/* Убираем правый отступ у последней кнопки */
+.admin-category button:last-child {
+    margin-right: 0;
+}
+
+/* Стилизация области результатов */
+.results-container {
+    background-color: white; /* Белый фон области результатов */
+    border-radius: 8px; /* Закругленные углы */
+    border: 1px solid #ccc; /* Тонкая обводка серого цвета */
+    padding: 15px; /* Отступы внутри области результатов */
+    width: calc(100% - 40px); /* Ширина как у категорий с учетом отступов */
+    max-width: 600px; /* Максимальная ширина области результатов */
+    height: 200px; /* Заданная высота области результатов */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-card {
+    background-color: #f0f0f0; /* Светлый фон карточки пользователя */
+    border-radius: 8px; /* Закругленные углы карточки */
+    padding: 15px; /* Отступы внутри карточки пользователя */
+    margin-bottom: 10px; /* Отступ между карточками пользователей */
+}

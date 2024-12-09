@@ -4,9 +4,14 @@ const $host = axios.create({
     baseURL: process.env.REACT_APP_API_URL
 })
 
-const $authHost = axios.create({
+/*const $authHost = axios.create({
     baseURL: process.env.REACT_APP_API_URL
-})
+})*/
+
+export const fetchUsers = async () => {
+    const response = await $host.get('/api/user'); // Укажите правильный путь к вашему API для получения всех пользователей
+    return response.data; // Возвращаем данные
+};
 
 export const fetchFlights = async () => {
     const response = await $host.get('http://localhost:5000/api/flight'); // Укажите правильный путь к вашему API

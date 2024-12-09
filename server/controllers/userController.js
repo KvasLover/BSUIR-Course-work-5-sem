@@ -64,7 +64,7 @@ class UserController {
     }
         
     async patchUser(req,res) {
-        const { id, balance } = req.body
+        const { id } = req.body
         const user = await User.findOne({
             where: {id}
         })
@@ -73,11 +73,15 @@ class UserController {
             return res.status(500).json({ message: 'Такого пользователя нет!' });
         }
 
-        /*if(req.body.role) {
+        if(req.body.role) {
             user.role = req.body.role
-        }*/
-       user.balance = balance
-        
+        }
+
+        if(req.body.balance)
+        {
+            user.balance = req.body.balance
+        }
+
         await user.save();
 
         return res.json(user)

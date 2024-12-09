@@ -53,6 +53,10 @@ class FlightController {
         if(req.body.date) {
             flight.date = req.body.date
         }
+
+        if(req.body.price) {
+            flight.price = req.body.price
+        }
         
         await flight.save();
 

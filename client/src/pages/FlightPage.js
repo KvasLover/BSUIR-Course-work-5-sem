@@ -64,7 +64,7 @@ const FlightPage = () => {
                 <p><strong>Время прибытия:</strong> {flight.finish_time}</p>
                 <p><strong>Дата:</strong> {flight.date}</p>
                 <p><strong>Свободные места:</strong> {flight.free_seats}</p>
-                <p><strong>Цена:</strong> {flight.price} byn</p>
+                <p><strong>Цена:</strong> {flight.price}</p>
 
                 {!tripType ? (
                     <form className="search-form" onSubmit={handleSubmit}>

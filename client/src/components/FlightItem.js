@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from "react";
 import { useNavigate, Link } from 'react-router-dom';
+import { Context } from ".."
 
 const FlightItem = ({ flight, tripType }) => {
     const navigate = useNavigate(); 
+    const { user } = useContext(Context);
 
     if(!flight)
         console.log("хуй")
@@ -23,10 +25,14 @@ const FlightItem = ({ flight, tripType }) => {
             date: flight.date,
             free_seats: flight.free_seats,
             price: flight.price
-        };
+        };        
         
         navigate('/flight', { state: { flight: flightData, tripType } });
     };
+
+    const checkIsAuth= () => {
+        return user.isAuth
+    }
 
     return (
         <div className="flight-item">
@@ -45,7 +51,15 @@ const FlightItem = ({ flight, tripType }) => {
             <p>Дата: {flight.date}</p>
             <p>Свободные места: {flight.free_seats}</p>
             <p>Цена: {flight.price}</p>
-            <button onClick={handleAddToCart}>Добавить в корзину</button>
+            {user.role === 1 || !user.role ? ( 
+                            <>
+                                <button onClick={handleAddToCart}>Добавить в корзину</button>
+                            </>
+                        ) : (
+                            <>
+                                
+                            </>
+                        )}            
             </div>
     );
 };

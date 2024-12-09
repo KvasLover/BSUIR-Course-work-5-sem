@@ -12,9 +12,14 @@ const Basket = () => {
         const numericPart = balanceString.replace(/\D/g, ''); // Удаляем все нецифровые символы
         return parseInt(numericPart, 10); // Преобразуем в целое число
     };
+/*
+    const priceToInt = (balanceString) => {
+        const numericPart = balanceString.replace(/\D/g, ''); // Удаляем все нецифровые символы
+        return parseInt(numericPart, 10); // Преобразуем в целое число
+    };*/
 
     const handleCheckout = (item) => {
-        const totalPrice = item.tripType === "roundTrip" ? item.price * 2 : item.price;
+        const totalPrice = item.tripType === "roundTrip" ? extractBalance(item.price) * 2 : extractBalance(item.price);
         const userBalance = extractBalance(user.user.balance); // Извлекаем числовую часть баланса
 
         if (userBalance < totalPrice) {
@@ -34,7 +39,7 @@ const Basket = () => {
 
     return (
         <div className="container">
-            <h1>Корзина, ваш баланс - {user.user.balance} ₽</h1>
+            <h1>Корзина, ваш баланс - {user.user.balance}</h1>
             {error && <p style={{ color: 'red' }}>{error}</p>} {/* Отображаем сообщение об ошибке */}
             {basketItems.length > 0 ? (
                 basketItems.map((item) => (
@@ -49,10 +54,10 @@ const Basket = () => {
                         <p><strong>Свободные места:</strong> {item.free_seats}</p>
                         {item.tripType === "roundTrip" ? (
                             <>
-                                <p><strong>Цена:</strong> {item.price} ₽ х 2 = {item.price * 2} ₽</p>
+                                <p><strong>Цена:</strong> {item.price} х 2 = {extractBalance(item.price) * 2}byn</p>
                             </>
                         ) : (
-                            <p><strong>Цена:</strong> {item.price} ₽</p>
+                            <p><strong>Цена:</strong> {item.price}</p>
                         )}
                         <button onClick={() => handleCheckout(item)}>Оформить</button>
                     </div>

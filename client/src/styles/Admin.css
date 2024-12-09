@@ -5,7 +5,6 @@
     align-items: center;
     padding: 20px;
     background-color: #dfd6d6; /* Светлый фон страницы */
-    color: black; /* Цвет текста */
 }
 
 .admin-category {
@@ -28,31 +27,25 @@
 
 .admin-category button {
     margin-right: 10px; /* Отступ между кнопками вправо */
-    margin-bottom: 5px; /* Отступ снизу кнопок для лучшего визуального восприятия */
-}
-
-/* Убираем правый отступ у последней кнопки */
-.admin-category button:last-child {
-    margin-right: 0;
+    margin-bottom: 10px; /* Отступ снизу кнопок для лучшего визуального восприятия */
 }
 
 /* Стилизация области результатов */
 .results-container {
-    background-color: white; /* Белый фон области результатов */
-    border-radius: 8px; /* Закругленные углы */
-    border: 1px solid #ccc; /* Тонкая обводка серого цвета */
-    padding: 15px; /* Отступы внутри области результатов */
-    width: calc(100% - 40px); /* Ширина как у категорий с учетом отступов */
-    max-width: 600px; /* Максимальная ширина области результатов */
-    height: 200px; /* Заданная высота области результатов */
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-wrap: wrap; /* Позволяет переносить карточки на новую строку */
+    gap: 10px; /* Используем gap для отступов между карточками */
 }
 
-.user-card {
-    background-color: #f0f0f0; /* Светлый фон карточки пользователя */
+.user-card,
+.flight-card {
+    background-color: #f0f0f0; /* Светлый фон карточки пользователя или рейса */
     border-radius: 8px; /* Закругленные углы карточки */
-    padding: 15px; /* Отступы внутри карточки пользователя */
-    margin-bottom: 10px; /* Отступ между карточками пользователей */
+    padding: 15px; /* Отступы внутри карточки */
+    width: calc(25% - 10px); /* Максимум 4 карточки в строке (25% ширины каждой) */
+}
+
+/* Убираем правый отступ у последней кнопки */
+.admin-category button:last-child {
+   margin-right: 0;
 }

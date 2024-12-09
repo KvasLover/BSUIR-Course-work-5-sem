@@ -12,7 +12,7 @@ const bcrypt = require('bcrypt')
         */
 class UserController {
     async registration(req, res, next) {
-        const {id, username, email, password, role } = req.body;
+        const {id, username, email, password, role , balance} = req.body;
         if (!username || !email || !password) {
             return next(ApiError.badRequest('Некорректный ввод'));
         }
@@ -27,7 +27,7 @@ class UserController {
         }
 
         const hashedPassword = await bcrypt.hash(password, 10); // Хешируем пароль
-        const user = await User.create({id, username, email, password: hashedPassword , role});
+        const user = await User.create({id, username, email, password: hashedPassword , role, balance});
         return res.json(user);
     }            
 

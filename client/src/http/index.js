@@ -35,12 +35,13 @@ export const fetchRoute = async (id) => {
 };
 
 // role = 1 - client, 2 - admin
-export const registerUser = async (username, email, password, role) => {
+export const registerUser = async (username, email, password, role, balance) => {
     const response = await $host.post('/api/user/registration', {
         username,
         email,
         password,
-        role
+        role,
+        balance: "200byn"
     });
     return response.data; // Возвращаем данные о пользователе
 };

@@ -34,7 +34,8 @@ const FlightPage = () => {
             setError('Пожалуйста, выберите тип поездки.'); // Устанавливаем сообщение об ошибке
             return; // Прерываем выполнение функции
         }
-        addToBasket(flight);
+        //addToBasket(flight);
+        addToBasket({ ...flight, tripType: tripTypePanel })
         alert('Рейс добавлен в корзину!');
     };
 
@@ -46,7 +47,8 @@ const FlightPage = () => {
         }
         // Проверяем, выбран ли тип поездки
         
-        addToBasket(flight);
+        //addToBasket(flight);
+        addToBasket({ ...flight, tripType })
         alert('Рейс добавлен в корзину!');
     };
 

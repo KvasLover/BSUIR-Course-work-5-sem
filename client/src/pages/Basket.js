@@ -11,15 +11,22 @@ const Basket = () => {
             {basketItems.length > 0 ? (
                 basketItems.map((item) => (
                     <div className="flight-item" key={item.id}>
-                        <p><strong>Пункт отправления: </strong>{item.start_location}</p>
-                        <p><strong>Пункт прибытия: </strong>{item.finish_location}</p>
-                        <p><strong>Модель автобуса: </strong>{item.BusAliasForGettingBusModelInFlight ? item.BusAliasForGettingBusModelInFlight.model : 'Неизвестно'}</p>
-                        <p><strong>Время в пути: </strong>{item.time_in_ride}</p>
-                        <p><strong>Время отправления: </strong>{item.start_time}</p>
-                        <p><strong>Время прибытия: </strong>{item.finish_time}</p>
-                        <p><strong>Дата: </strong>{item.date}</p>
-                        <p><strong>Свободные места: </strong>{item.free_seats}</p>
-                        <p><strong>Цена: </strong>{item.price}</p>
+                        <h2>{item.name}</h2> {/* Заголовок для рейса */}
+                        <p><strong>Пункт отправления:</strong> {item.start_location}</p>
+                        <p><strong>Пункт прибытия:</strong> {item.finish_location}</p>
+                        <p><strong>Модель автобуса:</strong> {item.BusAliasForGettingBusModelInFlight ? item.BusAliasForGettingBusModelInFlight.model : 'Неизвестно'}</p>
+                        <p><strong>Время в пути:</strong> {item.time_in_ride}</p>
+                        <p><strong>Время отправления:</strong> {item.start_time}</p>
+                        <p><strong>Время прибытия:</strong> {item.finish_time}</p>
+                        <p><strong>Дата:</strong> {item.date}</p>
+                        <p><strong>Свободные места:</strong> {item.free_seats}</p>
+                        {item.tripType === "roundTrip" ? (
+                            <>
+                                <p><strong>Ценааа:</strong> {item.price} х 2 = {item.price * 2} ₽</p>
+                            </>
+                        ) : (
+                            <p><strong>Цена:</strong> {item.price} ₽</p>
+                        )}
                     </div>
                 ))
             ) : (

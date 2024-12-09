@@ -22,7 +22,7 @@ console.log(user)
             {/* Добавьте редирект или другие маршруты по умолчанию, если необходимо */}
             <Route path="/bus/:id" element={BusPage} /> {/* Новый маршрут для автобуса */}
             <Route path="/route/:id" element={RoutePage} /> {/* Новый маршрут для автобуса */}
-            <Route path="*" element={<Navigate to="/MainPage" />} /> {/* Перенаправление по умолчанию */}
+            <Route path="*" element={<Navigate to="/" />} /> {/* Перенаправление по умолчанию */}
         </Routes>
     );
 });

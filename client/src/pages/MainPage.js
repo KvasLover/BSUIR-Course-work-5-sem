@@ -30,19 +30,20 @@ const MainPage = () => {
         // Перенаправляем на страницу расписания с параметрами запроса только если они заданы
         navigate(`/station?start=${encodeURIComponent(startLocation)}&finish=${encodeURIComponent(finishLocation)}&date=${encodeURIComponent(date)}&type=${encodeURIComponent(tripType)}`);
     };
-
-    return (
-        <div className="main-page">
-            <header className="main-header">
+/*
+<header className="main-header">
                 <img 
                     src="https://example.com/your-image.jpg" // Замените на URL вашего изображения
                     alt="Header"
                     className="header-image"
                 />
             </header>
+*/
 
+    return (
+        <div className="main-page">           
             <main>
-                <h1>Добро пожаловать на главную страницу!</h1>
+                <h1>Главная</h1>
                 
                 {/* Блок для поиска рейсов */}
                 <div className="search-block">

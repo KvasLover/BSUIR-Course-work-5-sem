@@ -1,4 +1,4 @@
-// BasketContext.js
+// src/components/BasketContext.js
 import React, { createContext, useState } from 'react';
 
 export const BasketContext = createContext();
@@ -15,7 +15,7 @@ export const BasketProvider = ({ children }) => {
     };
 
     return (
-        <BasketContext.Provider value={{ basketItems, addToBasket }}>
+        <BasketContext.Provider value={{ basketItems, setBasketItems, addToBasket }}>
             {children}
         </BasketContext.Provider>
     );
